@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Домашняя страница</title>
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+h1 {
+    color: #333;
+}
+a {
+    text-decoration: none;
+    color: blue;
+}</style>
+
+</head>
+<body>
+    <h1>Добро пожаловать на главную страницу!</h1>
+    {% if user.is_authenticated %}
+        <p>Привет, {{ user.username }}! <a href="{% url 'logout' %}">Выйти</a></p>
+    {% else %}
+        <p>Войдите или зарегистрируйтесь. <a href="{% url 'login' %}">Войти</a> или <a href="{% url 'register' %}">Зарегистрироваться</a>.</p>
+    {% endif %}
+</body>
+</html>
