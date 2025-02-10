@@ -1,32 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Домашняя страница</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Клининговая компания - Главная</title>
+  <style>
+    /* Общие стили */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-h1 {
-    color: #333;
-}
-a {
-    text-decoration: none;
-    color: blue;
-}</style>
-
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    /* Навигация */
+    .navbar {
+      background-color: #007bff;
+      padding: 15px;
+      text-align: right;
+    }
+    .navbar a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    /* Блок для гостей (неавторизованных пользователей) */
+    .auth-links {
+      text-align: right;
+      padding: 15px;
+    }
+    .auth-links a {
+      color: #007bff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 16px;
+    }
+    /* Баннер (Hero) */
+    .hero {
+      background: url('/static/images/orig.jpg') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 24px;
+    }
+    /* Информационные блоки */
+    .info-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 40px 0;
+    }
+    .info-block {
+      flex: 1;
+      min-width: 280px;
+      background-color: #fff;
+      margin: 10px;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .info-block h2 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    /* Подвал */
+    .footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Добро пожаловать на главную страницу!</h1>
-    {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}! <a href="{% url 'logout' %}">Выйти</a></p>
-    {% else %}
-        <p>Войдите или зарегистрируйтесь. <a href="{% url 'login' %}">Войти</a> или <a href="{% url 'register' %}">Зарегистрироваться</a>.</p>
-    {% endif %}
+  <!-- Навигация: если пользователь авторизован -->
+  {% if user.is_authenticated %}
+    <div class="navbar">
+      <a href="{% url 'home' %}">Главная</a>
+      <a href="{% url 'about' %}">О компании</a>
+      <a href="{% url 'services' %}">Услуги</a>
+      <a href="{% url 'contact' %}">Контакты</a>
+      <a href="{% url 'profile' %}">Профиль</a>
+      <a href="{% url 'logout' %}">Выйти</a>
+    </div>
+  {% else %}
+    <!-- Блок для гостей -->
+    <div class="auth-links">
+      <a href="{% url 'login' %}">Войти</a>
+      <a href="{% url 'register' %}">Зарегистрироваться</a>
+    </div>
+  {% endif %}
+
+  <!-- Баннер (Hero) -->
+  <div class="hero">
+    <h1>Профессиональная клининговая компания</h1>
+    <p>Мы сделаем Ваш дом и офис идеальными!</p>
+  </div>
+
+  <!-- Основной контент -->
+  <div class="container">
+    <!-- Раздел: О компании и Наши услуги -->
+    <div class="info-section">
+      <div class="info-block">
+        <h2>О компании</h2>
+        <p>Мы предоставляем полный спектр клининговых услуг для вашего дома и офиса. Наша команда профессионалов гарантирует качество и надежность. Работаем более 10 лет и ценим каждого клиента!</p>
+      </div>
+      <div class="info-block">
+        <h2>Наши услуги</h2>
+        <p>Уборка помещений, мойка окон, чистка ковров и мебели, а также специализированные услуги для бизнес-клиентов – всё для идеальной чистоты!</p>
+      </div>
+    </div>
+
+    <!-- Раздел: Преимущества и Отзывы -->
+    <div class="info-section">
+      <div class="info-block">
+        <h2>Преимущества</h2>
+        <p>Мы используем современное оборудование и высококачественные средства для уборки. Наши сотрудники регулярно проходят обучение, что гарантирует индивидуальный подход и безупречный результат.</p>
+      </div>
+      <div class="info-block">
+        <h2>Отзывы клиентов</h2>
+        <p>«Отличная компания! Мой дом сияет чистотой, а сотрудники – вежливые и профессиональные. Рекомендую всем!»</p>
+      </div>
+    </div>
+
+    <!-- Раздел: Контакты -->
+    <div class="info-section">
+      <div class="info-block" style="flex: 1;">
+        <h2>Контакты</h2>
+        <p>Телефон: +7 (123) 456-78-90<br>
+           Email: info@cleaningcompany.ru<br>
+           Адрес: ул. Примерная, 123, Москва</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Подвал -->
+  <div class="footer">
+    <p>&copy; 2025 Клининговая компания. Все права защищены.</p>
+  </div>
 </body>
 </html>
+// pip install Django
+//django-admin startproject myproject
+// python manage.py startapp users
+//python manage.py createsuperuser
+// cd myproject
+//> python manage.py runserver
