@@ -13,3 +13,4 @@ class ApplicationAdmin(admin.ModelAdmin):
     list_filter = ('created_at',)  # Фильтр по дате создания
 
 # Или можно использовать admin.site.register(Application) без декоратора
+
