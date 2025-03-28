@@ -2,142 +2,175 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Услуги</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous">
-  <style>
-    body {
-      background-color: #f4f4f9;
-      font-family: Arial, sans-serif;
-    }
-    .navbar {
-      background-color: #007BFF;
-      padding: 15px;
-      text-align: right;
-    }
-    .navbar a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .auth-links {
-      text-align: right;
-      padding: 15px;
-    }
-    .auth-links a {
-      color: #007BFF;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Услуги CleanPro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-  <!-- Навигация -->
-  {% if user.is_authenticated %}
-    <div class="navbar">
-      <a href="{% url 'home' %}">Главная</a>
-      <a href="{% url 'about' %}">О компании</a>
-      <a href="{% url 'services' %}">Услуги</a>
-      <a href="{% url 'contact' %}">Контакты</a>
-      <a href="{% url 'profile' %}">Профиль</a>
-      <a href="{% url 'logout' %}">Выйти</a>
+<body class="bg-gray-50 text-gray-800 leading-normal">
+  <!-- Navigation -->
+  <nav class="bg-blue-600 text-white py-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <div class="text-2xl font-bold">CleanPro</div>
+      <div class="space-x-6">
+        {% if user.is_authenticated %}
+          <a href="{% url 'home' %}" class="hover:text-blue-200">Главная</a>
+          <a href="{% url 'about' %}" class="hover:text-blue-200">О компании</a>
+          <a href="{% url 'services' %}" class="hover:text-blue-200">Услуги</a>
+          <a href="{% url 'contact' %}" class="hover:text-blue-200">Контакты</a>
+          <a href="{% url 'profile' %}" class="hover:text-blue-200">Профиль</a>
+          <a href="{% url 'logout' %}" class="hover:text-blue-200">Выйти</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">Войти</a>
+          <a href="{% url 'register' %}" class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">Регистрация</a>
+        {% endif %}
+      </div>
     </div>
-  {% else %}
-    <div class="auth-links">
-      <a href="{% url 'login' %}">Войти</a>
-      <a href="{% url 'register' %}">Регистрация</a>
-    </div>
-  {% endif %}
+  </nav>
 
-  <!-- Контент страницы -->
-  <div class="container my-5">
-    <h1 class="mb-4">Наши услуги</h1>
-    <div class="row">
-      <!-- Пример услуги 1 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="/static/images/service1.jpg" class="card-img-top" alt="Уборка помещений">
-          <div class="card-body">
-            <h5 class="card-title">Уборка помещений</h5>
-            <p class="card-text">Регулярная и генеральная уборка квартир, домов и офисов.</p>
+  <!-- Services Header -->
+  <header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-16 text-center">
+    <h1 class="text-4xl font-bold mb-4">Наши услуги</h1>
+    <p class="text-xl max-w-2xl mx-auto px-4">Комплексные клининговые решения для вашего дома и бизнеса</p>
+  </header>
+
+  <!-- Services Grid -->
+  <main class="container mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Service 1: Room Cleaning -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+        <div class="p-6 text-center">
+          <i class="fas fa-home text-blue-600 text-6xl mb-4"></i>
+          <h2 class="text-2xl font-semibold mb-3">Уборка помещений</h2>
+          <p class="text-gray-600 mb-4">Профессиональная регулярная и генеральная уборка квартир, домов и офисов.</p>
+          <div class="flex justify-center space-x-2">
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Квартиры</span>
+            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Офисы</span>
           </div>
         </div>
       </div>
-      <!-- Пример услуги 2 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="/static/images/service2.jpg" class="card-img-top" alt="Мойка окон">
-          <div class="card-body">
-            <h5 class="card-title">Мойка окон</h5>
-            <p class="card-text">Профессиональная мойка окон для безупречной чистоты.</p>
+
+      <!-- Service 2: Window Cleaning -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+        <div class="p-6 text-center">
+          <i class="fas fa-window-maximize text-green-600 text-6xl mb-4"></i>
+          <h2 class="text-2xl font-semibold mb-3">Мойка окон</h2>
+          <p class="text-gray-600 mb-4">Профессиональная мойка окон для безупречной прозрачности и чистоты.</p>
+          <div class="flex justify-center space-x-2">
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Высотные работы</span>
+            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">Фасады</span>
           </div>
         </div>
       </div>
-      <!-- Пример услуги 3 -->
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
-          <img src="/static/images/service3.jpg" class="card-img-top" alt="Чистка ковров">
-          <div class="card-body">
-            <h5 class="card-title">Чистка ковров</h5>
-            <p class="card-text">Профессиональная чистка ковров и мебели для создания уюта.</p>
+
+      <!-- Service 3: Carpet Cleaning -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition duration-300 hover:scale-105">
+        <div class="p-6 text-center">
+          <i class="fas fa-couch text-purple-600 text-6xl mb-4"></i>
+          <h2 class="text-2xl font-semibold mb-3">Чистка ковров и мебели</h2>
+          <p class="text-gray-600 mb-4">Глубокая профессиональная чистка ковров и мягкой мебели для идеального комфорта.</p>
+          <div class="flex justify-center space-x-2">
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Ковры</span>
+            <span class="bg-purple-100 text-purple-800 px-3 py-1 rounded-full text-sm">Диваны</span>
           </div>
         </div>
       </div>
     </div>
-    <!-- Кнопка для открытия модального окна отправки заявки -->
-    <div class="text-center mt-4">
-      <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#applicationModal">
-        Отправить заявку
+
+    <!-- Additional Services -->
+    <div class="mt-16">
+      <h2 class="text-3xl font-bold text-center mb-12">Дополнительные услуги</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-blue-50 p-6 rounded-lg text-center">
+          <i class="fas fa-broom text-blue-600 text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">После ремонта</h3>
+          <p>Комплексная уборка после строительных работ</p>
+        </div>
+        <div class="bg-green-50 p-6 rounded-lg text-center">
+          <i class="fas fa-shield text-green-600 text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Дезинфекция</h3>
+          <p>Профессиональная санитарная обработка помещений</p>
+        </div>
+        <div class="bg-purple-50 p-6 rounded-lg text-center">
+          <i class="fas fa-sparkles text-purple-600 text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Генеральная уборка</h3>
+          <p>Глубокая и всесторонняя чистка помещений</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Application Modal Trigger -->
+    <div class="text-center mt-16">
+      <button
+        x-data
+        @click="$dispatch('open-modal')"
+        class="bg-blue-600 text-white px-8 py-3 rounded-full text-lg hover:bg-blue-700 transition duration-300 shadow-md"
+      >
+        Оставить заявку
       </button>
     </div>
-  </div>
+  </main>
 
-  <!-- Модальное окно для отправки заявки -->
-  <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <form method="post" action="{% url 'send_application' %}">
-          {% csrf_token %}
-          <div class="modal-header">
-            <h5 class="modal-title" id="applicationModalLabel">Отправить заявку</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-          </div>
-          <div class="modal-body">
-            <!-- Поля формы заявки -->
-            <div class="mb-3">
-              <label for="id_email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="id_email" name="email" placeholder="Введите ваш email" required>
-            </div>
-            <div class="mb-3">
-              <label for="id_phone" class="form-label">Номер телефона</label>
-              <input type="text" class="form-control" id="id_phone" name="phone" placeholder="Введите номер телефона" required>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-            <button type="submit" class="btn btn-primary">Отправить заявку</button>
-          </div>
-        </form>
+  <!-- Modal for Application -->
+  <div
+    x-data="{ isOpen: false }"
+    x-show="isOpen"
+    @open-modal.window="isOpen = true"
+    @keydown.escape.window="isOpen = false"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+    x-cloak
+  >
+    <div
+      @click.outside="isOpen = false"
+      class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 p-6"
+    >
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Отправить заявку</h2>
+        <button @click="isOpen = false" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times text-2xl"></i>
+        </button>
       </div>
+
+      <form method="post" action="{% url 'send_application' %}">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="id_email" class="block mb-2">Email</label>
+          <input
+            type="email"
+            id="id_email"
+            name="email"
+            required
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Введите ваш email"
+          >
+        </div>
+        <div class="mb-6">
+          <label for="id_phone" class="block mb-2">Номер телефона</label>
+          <input
+            type="text"
+            id="id_phone"
+            name="phone"
+            required
+            class="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Введите номер телефона"
+          >
+        </div>
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition duration-300"
+        >
+          Отправить заявку
+        </button>
+      </form>
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Клининговая компания. Все права защищены.</p>
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>&copy; 2025 CleanPro. Все права защищены.</p>
   </footer>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-
+  <!-- Alpine.js for modal interactions -->
+  <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>

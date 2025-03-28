@@ -2,79 +2,110 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>О компании</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-        crossorigin="anonymous">
-  <style>
-    body {
-      background-color: #f4f4f9;
-      font-family: Arial, sans-serif;
-    }
-    /* Навигация */
-    .navbar {
-      background-color: #007BFF;
-      padding: 15px;
-      text-align: right;
-    }
-    .navbar a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    .auth-links {
-      text-align: right;
-      padding: 15px;
-    }
-    .auth-links a {
-      color: #007BFF;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 16px;
-    }
-    footer {
-      background-color: #333;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>О компании CleanPro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-<body>
-  <!-- Навигация -->
-  {% if user.is_authenticated %}
-    <div class="navbar">
-      <a href="{% url 'home' %}">Главная</a>
-      <a href="{% url 'about' %}">О компании</a>
-      <a href="{% url 'services' %}">Услуги</a>
-      <a href="{% url 'contact' %}">Контакты</a>
-      <a href="{% url 'profile' %}">Профиль</a>
-      <a href="{% url 'logout' %}">Выйти</a>
+<body class="bg-gray-50 text-gray-800 leading-normal">
+  <!-- Navigation -->
+  <nav class="bg-blue-600 text-white py-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center px-4">
+      <div class="text-2xl font-bold">CleanPro</div>
+      <div class="space-x-6">
+        {% if user.is_authenticated %}
+          <a href="{% url 'home' %}" class="hover:text-blue-200">Главная</a>
+          <a href="{% url 'about' %}" class="hover:text-blue-200">О компании</a>
+          <a href="{% url 'services' %}" class="hover:text-blue-200">Услуги</a>
+          <a href="{% url 'contact' %}" class="hover:text-blue-200">Контакты</a>
+          <a href="{% url 'profile' %}" class="hover:text-blue-200">Профиль</a>
+          <a href="{% url 'logout' %}" class="hover:text-blue-200">Выйти</a>
+        {% else %}
+          <a href="{% url 'login' %}" class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">Войти</a>
+          <a href="{% url 'register' %}" class="bg-white text-blue-600 px-4 py-2 rounded-md hover:bg-blue-100">Регистрация</a>
+        {% endif %}
+      </div>
     </div>
-  {% else %}
-    <div class="auth-links">
-      <a href="{% url 'login' %}">Войти</a>
-      <a href="{% url 'register' %}">Регистрация</a>
+  </nav>
+
+  <!-- About Us Header -->
+  <header class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-16 text-center">
+    <h1 class="text-4xl font-bold mb-4">О компании CleanPro</h1>
+    <p class="text-xl max-w-2xl mx-auto px-4">Мы – профессионалы, которые делают мир чище и комфортнее</p>
+  </header>
+
+  <!-- Company Story -->
+  <section class="container mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <div class="flex items-center mb-6">
+          <i class="fas fa-history text-blue-600 text-4xl mr-4"></i>
+          <h2 class="text-3xl font-semibold">История компании</h2>
+        </div>
+        <p class="mb-4">Основанная в 2015 году, CleanPro начиналась как небольшая семейная компания с амбициозной целью – изменить стандарты клининга в нашем городе.</p>
+        <p>За 10 лет мы выросли в одну из ведущих клининговых компаний, обслуживающих сотни довольных клиентов ежемесячно.</p>
+      </div>
+      <div class="flex justify-center">
+        <div class="bg-blue-100 p-8 rounded-lg">
+          <div class="text-center">
+            <i class="fas fa-trophy text-blue-600 text-6xl mb-4"></i>
+            <h3 class="text-2xl font-bold text-blue-800">10+ лет опыта</h3>
+            <p class="text-blue-600">Профессионализм и качество</p>
+          </div>
+        </div>
+      </div>
     </div>
-  {% endif %}
+  </section>
 
-  <!-- Контент страницы -->
-  <div class="container my-5">
-    <h1 class="mb-4">О нашей компании</h1>
-    <p>Мы — лидеры в сфере клининговых услуг с более чем 10-летним опытом. Наша миссия — обеспечить идеальную чистоту и комфорт для ваших домов и офисов.</p>
-    <p>Мы используем современные технологии и высококачественные средства для уборки, а также профессиональный персонал, что гарантирует безупречный результат.</p>
-    <img src="/static/images/about_us.jpg" class="img-fluid mt-4" alt="О компании">
-  </div>
+  <!-- Our Values -->
+  <section class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">Наши ценности</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <i class="fas fa-hands-helping text-blue-600 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Клиентоориентированность</h3>
+          <p>Мы всегда на связи и готовы выполнить любые пожелания клиента.</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-leaf text-green-600 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Экологичность</h3>
+          <p>Используем только безопасные и экологически чистые средства.</p>
+        </div>
+        <div class="text-center">
+          <i class="fas fa-users text-purple-600 text-5xl mb-4"></i>
+          <h3 class="text-xl font-semibold mb-2">Командная работа</h3>
+          <p>Наши специалисты – высококлассные профессионалы, работающие как единый механизм.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 Клининговая компания. Все права защищены.</p>
+  <!-- Team -->
+  <section class="container mx-auto px-4 py-16">
+    <h2 class="text-3xl font-bold text-center mb-12">Наша команда</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <i class="fas fa-user-tie text-blue-600 text-6xl mb-4"></i>
+        <h3 class="text-xl font-semibold">Анна Петрова</h3>
+        <p class="text-gray-600">Генеральный директор</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <i class="fas fa-user-cog text-green-600 text-6xl mb-4"></i>
+        <h3 class="text-xl font-semibold">Игорь Смирнов</h3>
+        <p class="text-gray-600">Технический директор</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow-md text-center">
+        <i class="fas fa-user-shield text-purple-600 text-6xl mb-4"></i>
+        <h3 class="text-xl font-semibold">Елена Иванова</h3>
+        <p class="text-gray-600">Директор по качеству</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6 text-center">
+    <p>&copy; 2025 CleanPro. Все права защищены.</p>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-ENjdO4Dr2bkBIFxQpeo0xVpN0gPCvboNf6sN/pbycQO7xWclGw9PUI29A7JeV1Aw"
-          crossorigin="anonymous"></script>
 </body>
 </html>
